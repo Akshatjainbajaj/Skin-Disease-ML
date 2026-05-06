@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import os
+from model.predict import predict_image
 
 app = Flask(__name__)
 
@@ -16,13 +17,18 @@ def home():
     confidence = None
 
     if request.method == 'POST':
-        file = request.files['image']
 
-        if file and file.filename != "":
+        file = request.files.get('image')
+
+        print("File received:", file)
+
+        if file and file.filename:
+
+            print("Filename:", file.filename)
+
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(filepath)
 
-            # Fix path for browser display
             image_path = filepath.replace("\\", "/")
 
             prediction, confidence = predict_image(filepath)

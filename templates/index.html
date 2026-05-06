@@ -21,12 +21,19 @@
         <p class="subtitle">Upload an image and let AI analyze it</p>
 
         <form method="POST" enctype="multipart/form-data" id="uploadForm">
-            <label class="drop-zone" id="dropZone">
-                <input type="file" name="image" id="fileInput" required hidden>
+
+            <input type="file" name="image" id="fileInput" required hidden>
+
+            <label for="fileInput" class="drop-zone" id="dropZone">
                 <span id="dropText">Drag & Drop or Click to Upload</span>
             </label>
 
-            <button type="submit" id="analyzeBtn">Analyze Image</button>
+            <button type="submit" id="analyzeBtn">
+                Analyze Image
+            </button>
+
+        </form>
+
         </form>
 
 
@@ -57,6 +64,7 @@
     </div>
 
     <script>
+
         const form = document.getElementById("uploadForm");
         const loading = document.getElementById("loading");
 
@@ -64,28 +72,45 @@
             loading.classList.remove("hidden");
         });
 
-        // Drag & Drop UI
         const dropZone = document.getElementById("dropZone");
         const fileInput = document.getElementById("fileInput");
         const dropText = document.getElementById("dropText");
 
-        dropZone.addEventListener("click", () => fileInput.click());
+        fileInput.addEventListener("change", () => {
+
+            if (fileInput.files.length > 0) {
+                dropText.innerText = fileInput.files[0].name;
+            }
+
+        });
 
         dropZone.addEventListener("dragover", (e) => {
+
             e.preventDefault();
             dropZone.classList.add("dragover");
+
         });
 
         dropZone.addEventListener("dragleave", () => {
+
             dropZone.classList.remove("dragover");
+
         });
 
         dropZone.addEventListener("drop", (e) => {
+
             e.preventDefault();
+
             dropZone.classList.remove("dragover");
+
             fileInput.files = e.dataTransfer.files;
-            dropText.innerText = e.dataTransfer.files[0].name;
+
+            if (e.dataTransfer.files.length > 0) {
+                dropText.innerText = e.dataTransfer.files[0].name;
+            }
+
         });
+
     </script>
 
 </body>

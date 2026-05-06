@@ -6,7 +6,13 @@ BATCH_SIZE = 16
 
 datagen = ImageDataGenerator(
     rescale=1./255,
-    validation_split=0.2
+    validation_split=0.2,
+
+    rotation_range=20,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    shear_range=0.2,
+    brightness_range=[0.8, 1.2]
 )
 
 train_data = datagen.flow_from_directory(
@@ -37,6 +43,7 @@ model = tf.keras.Sequential([
     base_model,
     tf.keras.layers.GlobalAveragePooling2D(),
     tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(5, activation='softmax')
 ])
 
@@ -49,7 +56,7 @@ model.compile(
 model.fit(
     train_data,
     validation_data=val_data,
-    epochs=5
+    epochs=15
 )
 
 model.save("model/skin_model.h5")
