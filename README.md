@@ -1,11 +1,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python)
-
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-DeepLearning-orange?style=for-the-badge&logo=tensorflow)
-
 ![Flask](https://img.shields.io/badge/Flask-WebApp-black?style=for-the-badge&logo=flask)
-
 ![HTML](https://img.shields.io/badge/Frontend-HTML%2FCSS-red?style=for-the-badge&logo=html5)
-
 ![CNN](https://img.shields.io/badge/Model-CNN-green?style=for-the-badge)
 
 # 🩺 Skin Disease Detection using Deep Learning
