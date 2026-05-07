@@ -14,7 +14,6 @@ body {
     color: white;
 }
 
-/* Background glow */
 .bg {
     position: absolute;
     width: 100%;
@@ -81,14 +80,12 @@ button:hover {
     box-shadow: 0 0 15px #00c6ff;
 }
 
-/* Preview */
 .preview img {
     width: 100%;
     margin-top: 10px;
     border-radius: 10px;
 }
 
-/* Result */
 .result {
     margin-top: 20px;
 }
@@ -107,7 +104,6 @@ button:hover {
     border-radius: 10px;
 }
 
-/* Loading */
 .hidden {
     display: none;
 }
