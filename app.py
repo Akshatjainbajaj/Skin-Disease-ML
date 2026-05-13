@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import os
-from model.predict import predict_image
 
 app = Flask(__name__)
 
@@ -23,6 +22,7 @@ def home():
         print("File received:", file)
 
         if file and file.filename:
+            from model.predict import predict_image
 
             print("Filename:", file.filename)
 
