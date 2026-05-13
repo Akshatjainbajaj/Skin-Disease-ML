@@ -3,7 +3,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
 # Load model
-model = load_model("model/skin_model.h5")
+model = load_model("model/skin_model.h5", compile=False)
 
 # IMPORTANT: class order must match dataset folders
 classes = ['acne', 'eczema', 'healthy', 'tinea', 'vitiligo']
