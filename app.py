@@ -1,47 +1,22 @@
-from flask import Flask, render_template, request
-import os
+import gradio as gr
+from model.predict import predict_image
 
-app = Flask(__name__)
+def predict(img):
 
-# Upload folder
-UPLOAD_FOLDER = 'static/uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    prediction, confidence = predict_image(img)
 
+    return f"Prediction: {prediction}\nConfidence: {confidence*100:.2f}%"
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    image_path = None
-    prediction = None
-    confidence = None
+iface = gr.Interface(
+    fn=predict,
 
-    if request.method == 'POST':
+    inputs=gr.Image(type="filepath"),
 
-        file = request.files.get('image')
+    outputs="text",
 
-        print("File received:", file)
+    title="Skin Disease Detection AI",
 
-        if file and file.filename:
-            from model.predict import predict_image
+    description="Upload a skin image to detect possible skin disease."
+)
 
-            print("Filename:", file.filename)
-
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(filepath)
-
-            image_path = filepath.replace("\\", "/")
-
-            prediction, confidence = predict_image(filepath)
-            confidence = round(confidence * 100, 2)
-
-    return render_template(
-        'index.html',
-        image_path=image_path,
-        prediction=prediction,
-        confidence=confidence
-    )
-
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5001))
-    app.run(host='0.0.0.0', port=port)
+iface.launch()
