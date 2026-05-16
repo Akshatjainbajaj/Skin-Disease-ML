@@ -1,13 +1,3 @@
----
-title: Skin Disease Detector
-emoji: 🩺
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-python_version: "3.10"
-app_file: app.py
-pinned: false
----
 
 ![Python](https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-DeepLearning-orange?style=for-the-badge&logo=tensorflow)
