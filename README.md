@@ -26,7 +26,6 @@ A deep learning based web application that detects common skin diseases from upl
 - Tinea
 - Vitiligo
 
-> Because apparently human skin needed software updates too.
 
 ## 🛠️ Tech Stack
 
